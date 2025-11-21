@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,7 +30,36 @@ builder.Services
         });
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.
+    AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new() { Title = "AuthApiDemo", Version = "v1" }); // 在 Swagger 頁面左上角生成：「AuthApiDemo v1」
+
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme // AddSecurityDefinition = 告訴 Swagger：我們要有「Bearer Token」輸入欄位
+    {
+        In = ParameterLocation.Header, // Swagger 要把 Token 放在 HTTP Header 裡
+        Description = "請輸入 JWT Token，格式：Bearer <token>",
+        Name = "Authorization", // Header 的名稱固定叫 Authorization
+        Type = SecuritySchemeType.ApiKey, // Swagger UI 的顯示方式 → 用「輸入欄位」呈現
+        Scheme = "Bearer" // 告訴 Swagger：這個 Token 是 "Bearer" 格式
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement // Swagger：請幫我讓所有 API 都使用剛剛設定的 "Bearer Token"
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference // 告訴 Swagger：「我要用剛才那個叫 Bearer 的安全機制
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[]{ }
+        }
+    });
+});
 
 var app = builder.Build();
 
@@ -41,6 +71,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthorization();
 
 app.UseAuthorization();
 

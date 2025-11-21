@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36414.22 d17.14
+VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthApiDemo", "AuthApiDemo\AuthApiDemo.csproj", "{7B4615E1-8CFA-4BEC-A76B-3B2CE0B879FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginClientDemo", "LoginClientDemo\LoginClientDemo.csproj", "{4479CFB2-752B-42F4-BD00-C4A45DF76386}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{7B4615E1-8CFA-4BEC-A76B-3B2CE0B879FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B4615E1-8CFA-4BEC-A76B-3B2CE0B879FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B4615E1-8CFA-4BEC-A76B-3B2CE0B879FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4479CFB2-752B-42F4-BD00-C4A45DF76386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4479CFB2-752B-42F4-BD00-C4A45DF76386}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4479CFB2-752B-42F4-BD00-C4A45DF76386}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4479CFB2-752B-42F4-BD00-C4A45DF76386}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
